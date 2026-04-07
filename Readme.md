@@ -24,7 +24,7 @@ Let me break it down clearly so you don’t waste time or money.
 3. [Penetration Testing with Kali - Advanced](https://github.com/jakir-ruet/ethical-acking-mastering/tree/master/03-ptk), [More](https://www.offsec.com/courses/pen-200/)
 4. [SANS Ethical Hacking Bootcamp - Advanced](https://github.com/jakir-ruet/ethical-acking-mastering/tree/master/04-sans-ceh), [More](https://www.sans.org/mlp/ethical-hacking)
 
-### Ethical Hacking Series
+### Understanding Ethical Hacking Series
 
 full Ethical Hacking Series with detailed subcategories for every main topic. I’ve structured it as a comprehensive learning roadmap from Beginner → Advanced
 
@@ -58,6 +58,48 @@ full Ethical Hacking Series with detailed subcategories for every main topic. I�
 - Governments invest heavily in cybersecurity.
 - Cybercrime is an extremely profitable global industry.
 - Skilled hackers can breach networks very quickly.
+
+### Fundamentals of Information Security
+
+| Principle           | Description                                    | Example                          | Control Mechanisms                          |
+| ------------------- | ---------------------------------------------- | -------------------------------- | ------------------------------------------- |
+| **Confidentiality** | Protect data from unauthorized access          | Encrypting sensitive files       | Encryption (AES), Access Control (IAM)      |
+| **Integrity**       | Ensure data is not altered                     | File hash verification           | Hashing (SHA-256), Digital signatures       |
+| **Availability**    | Ensure systems/data are accessible when needed | Website uptime                   | Load balancing, backups, DR                 |
+| **Authenticity**    | Verify identity of users/systems               | Login with username/password     | MFA, certificates, authentication protocols |
+| **Non-repudiation** | Prevent denial of actions                      | Email sender cannot deny sending | Digital signatures, logging, PKI            |
+
+### Types of Attacks
+
+| Attack Type              | Description                      | Example                          | Mitigation                            |
+| ------------------------ | -------------------------------- | -------------------------------- | ------------------------------------- |
+| **Passive Attacks**      | Monitor data without altering it | Packet sniffing                  | Encryption (TLS), VPN                 |
+| **Active Attacks**       | Modify or disrupt systems        | Man-in-the-middle, DoS           | IDS/IPS, firewalls                    |
+| **Insider Attacks**      | Performed by trusted users       | Employee stealing data           | Least privilege, monitoring           |
+| **Close-in Attacks**     | Require physical proximity       | Shoulder surfing, Wi-Fi sniffing | Physical security, network encryption |
+| **Distribution Attacks** | Tampering during supply chain    | Backdoored hardware/software     | Vendor validation, integrity checks   |
+
+### Attack Formula
+
+`Attacks = Motive + Method + Vulnerability`
+
+| Component         | Meaning              | Example                   |
+| ----------------- | -------------------- | ------------------------- |
+| **Motive**        | Reason behind attack | Financial gain, espionage |
+| **Method**        | Technique used       | Phishing, malware         |
+| **Vulnerability** | Weakness exploited   | Unpatched system          |
+
+### Cyber Kill Chain Methodology - `R → W → D → E → I → C → A`
+
+| Phase                      | Description                         | Attacker Activity                        | Example                                  | Defense Strategy                      |
+| -------------------------- | ----------------------------------- | ---------------------------------------- | ---------------------------------------- | ------------------------------------- |
+| **Reconnaissance**         | Gather information about the target | Scanning, OSINT, social engineering      | Collecting employee emails from LinkedIn | WAF, IDS/IPS, threat intelligence     |
+| **Weaponization**          | Create malicious payload            | Combine exploit + malware                | Embedding malware in Word/PDF            | Threat intelligence, malware analysis |
+| **Delivery**               | Send payload to victim              | Phishing email, USB, malicious link      | Email with infected attachment           | Email filtering, sandboxing           |
+| **Exploitation**           | Execute the attack                  | Trigger vulnerability                    | User opens malicious file                | Patch management, EDR                 |
+| **Installation**           | Establish persistence               | Install malware/backdoor                 | Registry changes, scheduled tasks        | Application control, EDR              |
+| **Command & Control (C2)** | Connect to attacker server          | Remote control communication             | Malware connects to C2 server            | Network monitoring, DNS filtering     |
+| **Action on Objectives**   | Achieve attack goal                 | Data theft, ransomware, lateral movement | Exfiltration of database                 | DLP, SIEM, Zero Trust                 |
 
 ## With Regards, `Jakir`
 
