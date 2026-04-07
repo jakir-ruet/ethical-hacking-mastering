@@ -20,11 +20,8 @@ Ethical hacking is the `legal` and `authorized` practice of `testing computer sy
 Let me break it down clearly so you don’t waste time or money.
 
 1. [Certified Ethical Hacker - Beginner](https://github.com/jakir-ruet/ethical-acking-mastering/tree/master/01-ceh), [More](https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/)
-
 2. [Cybrary Ethical Hacking - Intermediate](https://github.com/jakir-ruet/ethical-acking-mastering/tree/master/02-ceh), [More](https://www.cybrary.it/certification-prep-courses/penetration-testing-and-ethical-hacking)
-
 3. [Penetration Testing with Kali - Advanced](https://github.com/jakir-ruet/ethical-acking-mastering/tree/master/03-ptk), [More](https://www.offsec.com/courses/pen-200/)
-
 4. [SANS Ethical Hacking Bootcamp - Advanced](https://github.com/jakir-ruet/ethical-acking-mastering/tree/master/04-sans-ceh), [More](https://www.sans.org/mlp/ethical-hacking)
 
 ### Ethical Hacking Series
