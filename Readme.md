@@ -101,6 +101,46 @@ full Ethical Hacking Series with detailed subcategories for every main topic. I�
 | **Command & Control (C2)** | Connect to attacker server          | Remote control communication             | Malware connects to C2 server            | Network monitoring, DNS filtering     |
 | **Action on Objectives**   | Achieve attack goal                 | Data theft, ransomware, lateral movement | Exfiltration of database                 | DLP, SIEM, Zero Trust                 |
 
+### Tactics, Techniques, and Procedures (TTPs)
+
+| Component      | Description                               | Focus Area                    | Example                                            | Detection / Defense                |
+| -------------- | ----------------------------------------- | ----------------------------- | -------------------------------------------------- | ---------------------------------- |
+| **Tactics**    | High-level goal of the attacker           | *Why* the attack is happening | Initial Access, Persistence, Data Exfiltration     | Security strategy, threat modeling |
+| **Techniques** | Methods used to achieve the tactic        | *How* the attack is done      | Phishing, Exploiting vulnerabilities               | IDS/IPS, EDR, SIEM                 |
+| **Procedures** | Step-by-step implementation of techniques | *Exactly how* it is executed  | Sending crafted phishing email with malicious link | Threat hunting, behavior analysis  |
+
+### Adversary Behavioral Identification
+
+| Behavior                           | Description                                             | Indicators (What to Look For)                 | Example                                | Detection / Mitigation                   |
+| ---------------------------------- | ------------------------------------------------------- | --------------------------------------------- | -------------------------------------- | ---------------------------------------- |
+| **Internal Reconnaissance**        | Attacker explores internal network after initial access | Unusual scanning, LDAP queries, port sweeps   | Compromised user scanning subnet       | Network monitoring, IDS/IPS, Zero Trust  |
+| **Suspicious Proxy Events**        | Abnormal traffic through proxy servers                  | Access to unusual domains, high data transfer | User accessing rare external domains   | Proxy logs analysis, URL filtering       |
+| **PowerShell Abuse**               | Misuse of PowerShell for malicious tasks                | Encoded commands, unusual scripts             | Base64 encoded PowerShell execution    | EDR, PowerShell logging, script blocking |
+| **HTTP User-Agent Anomalies**      | Fake or unusual user-agent strings                      | Non-standard or scripted agents               | “curl/7.68.0” or custom malware agent  | Web logs analysis, WAF                   |
+| **CLI Processes**                  | Suspicious command-line activity                        | Unknown commands, privilege escalation        | `net user`, `whoami`, `ipconfig` abuse | Endpoint monitoring, audit logs          |
+| **Command & Control (C2) Servers** | Communication with attacker infrastructure              | Repeated outbound connections, beaconing      | Regular traffic to unknown IP/domain   | DNS filtering, network monitoring        |
+
+### Diamond Model of Intrusion Analysis
+
+The Diamond Model was developed by Center for Cyber Intelligence Analysis and Threat Research. It helps analysts understand cyber intrusions by linking four core elements.
+
+| Component          | Description                     | Key Question                     | Example                  |
+| ------------------ | ------------------------------- | -------------------------------- | ------------------------ |
+| **Adversary**      | The attacker or threat actor    | Who is attacking?                | Hacker group, insider    |
+| **Capability**     | Tools, malware, techniques used | How is the attack performed?     | Malware, exploit kits    |
+| **Infrastructure** | Systems used to launch attack   | Where does the attack come from? | C2 servers, domains, IPs |
+| **Victim**         | Target of the attack            | Who is being attacked?           | Organization, user       |
+
+### Types of Hackers
+
+| Type                  | Description                                         | Motivation                          | Skill Level                    | Example                                                   |
+| --------------------- | --------------------------------------------------- | ----------------------------------- | ------------------------------ | --------------------------------------------------------- |
+| **Black Hat Hackers** | Malicious hackers who exploit systems illegally     | Financial gain, revenge, cybercrime | High to advanced               | Ransomware attackers stealing data                        |
+| **White Hat Hackers** | Ethical hackers who test and secure systems legally | Security improvement                | High (certified professionals) | Penetration testers, bug bounty hunters                   |
+| **Gray Hat Hackers**  | Operate between legal and illegal boundaries        | Curiosity, reputation               | Medium to high                 | Access system without permission but report vulnerability |
+| **Suicide Hackers**   | Attack without concern for consequences             | Ideology, revenge                   | Varies                         | Hackers exposing systems publicly without hiding identity |
+| **Script Kiddies**    | Use pre-made tools without deep knowledge           | Fun, curiosity                      | Low                            | Running downloaded hacking tools                          |
+
 ## With Regards, `Jakir`
 
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]
