@@ -101,9 +101,9 @@ full Ethical Hacking Series with detailed subcategories for every main topic. Iâ
 | **Command & Control (C2)** | Connect to attacker server          | Remote control communication             | Malware connects to C2 server            | Network monitoring, DNS filtering     |
 | **Action on Objectives**   | Achieve attack goal                 | Data theft, ransomware, lateral movement | Exfiltration of database                 | DLP, SIEM, Zero Trust                 |
 
-> **Reconnaissance:** Is the preliminary survey, exploration, or inspection of an area to gather information about enemy forces, terrain, or resources.
-> **Weaponization**: Is the process of adapting a substance, object, or concept into a tool for causing harm, inflicting injury, or gaining a tactical advantage.
-> **Exploitation:** Is the unfair, manipulative use of a person or resource for personal advantage, often involving coercion, abuse of power, or taking advantage of vulnerability.
+> - **Reconnaissance:** Is the preliminary survey, exploration, or inspection of an area to gather information about enemy forces, terrain, or resources.
+> - **Weaponization**: Is the process of adapting a substance, object, or concept into a tool for causing harm, inflicting injury, or gaining a tactical advantage.
+> - **Exploitation:** Is the unfair, manipulative use of a person or resource for personal advantage, often involving coercion, abuse of power, or taking advantage of vulnerability.
 
 ### Tactics, Techniques, and Procedures (TTPs)
 
