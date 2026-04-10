@@ -241,6 +241,527 @@ Manipulating people into revealing information or performing actions, like
 | **Terrorist / Extremist Actors**           | Use cyber attacks to spread fear or disrupt systems                       | Fear, disruption, propaganda              | Targets critical infrastructure                     | Cyber-terror campaigns       |
 | **Insider Threats** *(important addition)* | Employees or trusted users misusing access                                | Financial gain, revenge, coercion         | Hard to detect, already inside perimeter            | Disgruntled employee         |
 
+### Hacktivism
+
+Hacktivism refers to cyber attacks carried out by individuals or groups motivated by political, social, or ideological beliefs. Their primary goal is protest or disruption, often targeting governments or corporations through activities like website defacement and DDoS attacks.
+
+#### Hacktivism – Key Characteristics
+
+| Feature                          | Description                                                                 |
+| -------------------------------- | --------------------------------------------------------------------------- |
+| **Motivation**                   | Ideological / political / social justice / religious beliefs                |
+| **Skill Level**                  | Low to medium (some groups can be highly advanced)                          |
+| **Visibility**                   | High (they often want publicity and media attention)                        |
+| **Impact Style**                 | Disruption, embarrassment, protest, reputation damage                       |
+| **Stealth**                      | Low (compared to state-sponsored or cyber espionage actors)                 |
+| **Primary Goal**                 | Send a message rather than financial gain                                   |
+| **Target Selection**             | Symbolic targets (governments, corporations, controversial orgs)            |
+| **Attack Types**                 | Website defacement, DDoS, data leaks, social media hijacking                |
+| **Persistence**                  | Low to medium (usually short-term campaigns)                                |
+| **Organization Level**           | Loose groups or decentralized communities (sometimes anonymous collectives) |
+| **Tool Usage**                   | Publicly available tools (DDoS scripts, leak platforms, exploit kits)       |
+| **OpSec (Operational Security)** | Weak to moderate (often careless due to publicity goals)                    |
+| **Risk to Organization**         | Reputation damage, service disruption, public trust loss                    |
+| **Legal Status**                 | Illegal cybercrime in most jurisdictions                                    |
+| **Typical Response**             | Rapid incident response, DDoS mitigation, public communication              |
+
+### Hacking Lifecycle
+
+Hacking follows a lifecycle starting from reconnaissance, scanning, gaining access, maintaining access, and finally clearing tracks. Since no system is fully secure, the goal of cybersecurity is to discourage, misdirect, and slow down attackers while detecting them as early as possible
+
+| Phase                  | ATT&CK Mapping         |
+| ---------------------- | ---------------------- |
+| **1. Reconnaissance**  | Discovery tactics      |
+| **2. Scanning**        | Recon + Discovery      |
+| **3. Gaining Access**  | Initial Access         |
+| **4. Persistence**     | Persistence techniques |
+| **5. Clearing Tracks** | Defense Evasion        |
+
+#### 1. Reconnaissance
+
+Reconnaissance is the first phase of a cyber attack where attackers gather information about a target system, organization, or individuals to find possible entry points.
+
+##### Types of Reconnaissance
+
+| Category           | Passive Reconnaissance                                                                                          | Active Reconnaissance                                                          |
+| ------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Meaning            | Gathering information without directly interacting with the target system                                       | Direct interaction with target systems to collect technical data               |
+| Sources/Activities | Company website, job postings, social media (LinkedIn, Facebook), DNS records, public documents, Google dorking | Port scanning (Nmap), service enumeration, vulnerability scanning, ping sweeps |
+| Goal               | Understand the target silently without detection                                                                | Identify live hosts, open ports, services, and vulnerabilities                 |
+| Interaction        | No direct contact with the target                                                                               | Direct contact with the target network                                         |
+| Detectability      | Hard to detect                                                                                                  | Easier to detect                                                               |
+| Risk Level         | Low risk                                                                                                        | Higher risk                                                                    |
+| Data Source Type   | External/public sources                                                                                         | Internal/target network probing                                                |
+
+##### Social Engineering
+
+Social Engineering is manipulating people to gain confidential information instead of hacking systems directly. Common Techniques;
+
+- Phishing emails
+- Fake phone calls (vishing)
+- Fake websites
+- Pretexting (fake identity)
+- Baiting (malicious USB)
+
+#### 2. Scanning
+
+Scanning is the phase where attackers actively gather detailed technical information about target systems to identify live hosts, open ports, services, and vulnerabilities.
+
+**Key Activities**
+
+| Activity                | Description                                                   |
+| ----------------------- | ------------------------------------------------------------- |
+| Information Gathering   | Collect technical details about systems and network structure |
+| System Identification   | Identify live hosts, operating systems, and running services  |
+| Vulnerability Discovery | Detect weaknesses in services, configurations, or software    |
+
+**Tooling**
+
+| Tool Type              | Examples                | Purpose                                 |
+| ---------------------- | ----------------------- | --------------------------------------- |
+| Port Scanners          | Nmap, Masscan           | Identify open ports and services        |
+| Vulnerability Scanners | Nessus, OpenVAS, Qualys | Detect known vulnerabilities in systems |
+
+#### 3. Gaining Access
+
+Gaining Access is the phase where an attacker exploits vulnerabilities to enter a system, network, or application and obtain unauthorized control or access.
+
+**Ways of Gaining Access**
+
+| Method          | Description                                        | Example                                 |
+| --------------- | -------------------------------------------------- | --------------------------------------- |
+| Via Network     | Exploiting network services or weak configurations | Open ports, unsecured services          |
+| Via Application | Exploiting application-level vulnerabilities       | SQL Injection, XSS, vulnerable web apps |
+| Via OS          | Exploiting operating system weaknesses             | Privilege escalation, unpatched OS      |
+
+**Goals of Attacker**
+
+| Goal                        | Description                                                 |
+| --------------------------- | ----------------------------------------------------------- |
+| Access Data                 | Steal sensitive information (files, credentials, databases) |
+| Reconfigure or Crash System | Change system settings or cause instability                 |
+| Exhaust Resources           | Overload system resources (CPU, memory, bandwidth)          |
+
+**Common Techniques**
+
+| Technique               | Description                           | Example                              |
+| ----------------------- | ------------------------------------- | ------------------------------------ |
+| Password Cracking       | Guessing or brute-forcing credentials | Weak passwords, credential stuffing  |
+| Buffer Overflows        | Exploiting memory handling errors     | Injecting malicious code into memory |
+| Session Hijacking       | Stealing active user sessions         | Cookie theft, token interception     |
+| Denial of Service (DoS) | Making system unavailable             | Flooding server with requests        |
+| Privilege Escalation    | Gaining higher-level access           | User → Admin/root access             |
+
+#### 4. Persistence
+
+Maintaining Access is the phase where an attacker ensures persistent control over a compromised system or network so they can return later and continue operations.
+
+**Activities in Maintaining Access**
+
+| Activity                   | Description                                       | Example                          |
+| -------------------------- | ------------------------------------------------- | -------------------------------- |
+| PWNing the system          | Full control over the compromised machine         | Root/Admin access gained         |
+| Use system as a launch pad | Use compromised host to attack other systems      | Lateral movement inside network  |
+| Inject backdoors / trojans | Install hidden access mechanisms                  | Web shell, reverse shell         |
+| Revisit system later       | Persistent access even after reboot/login changes | Scheduled tasks, startup scripts |
+| Sniff / monitor network    | Capture traffic and credentials                   | Packet sniffing tools            |
+| Use system resources       | Use CPU, memory, bandwidth for attacker goals     | Botnets, crypto mining           |
+| Hardening by attacker      | Disable logs, hide presence, evade detection      | Log tampering, rootkits          |
+
+**Goals of Maintaining Access**
+
+| Goal              | Description                                      |
+| ----------------- | ------------------------------------------------ |
+| Persistent Access | Stay connected even after reboots or fixes       |
+| Lateral Movement  | Move deeper into the network                     |
+| Data Collection   | Continuously steal sensitive data                |
+| Stealth Operation | Avoid detection by security tools                |
+| Control Expansion | Turn single compromise into full network control |
+
+#### 5. Clearing Tracks
+
+Clearing Tracks is the phase where an attacker removes or hides evidence of their activities to avoid detection and investigation.
+
+**Activities in Clearing Tracks**
+
+| Activity                | Description                                | Example                                      |
+| ----------------------- | ------------------------------------------ | -------------------------------------------- |
+| Destroy proof           | Delete logs and evidence of activity       | Clearing event logs, bash history            |
+| Hide malicious activity | Obfuscate or disguise actions              | Renaming tools, hiding processes             |
+| Cyber blind             | Disable or bypass monitoring tools         | Disabling antivirus, stopping logging agents |
+| Hide files              | Store malware or tools in hidden locations | Hidden directories, steganography            |
+| Log manipulation        | Modify or erase audit trails               | Editing system logs                          |
+| Anti-forensics          | Techniques to prevent investigation        | Timestamp manipulation, log wiping           |
+
+**Goals of Clearing Tracks**
+
+| Goal                | Description                          |
+| ------------------- | ------------------------------------ |
+| Remove Evidence     | Eliminate proof of intrusion         |
+| Avoid Detection     | Stay invisible to SOC/EDR teams      |
+| Delay Investigation | Make forensic analysis harder        |
+| Maintain Access     | Ensure persistence without suspicion |
+
+### Types of Attackers, Attack Lifecycle (Stages), Their Methods and Attackers’ Goals
+
+#### Types of Attackers
+
+| Attacker Type                    | Description                                   | Main Goal                                        | Risk Level       |
+| -------------------------------- | --------------------------------------------- | ------------------------------------------------ | ---------------- |
+| Black Hat Hacker                 | Malicious hacker who breaks systems illegally | Steal data, financial gain, damage systems       | Very High        |
+| White Hat Hacker                 | Ethical hacker working legally                | Improve security by finding vulnerabilities      | Low (controlled) |
+| Gray Hat Hacker                  | Mix of ethical and unethical behavior         | Explore systems, sometimes report flaws          | Medium           |
+| Script Kiddie                    | Unskilled attacker using ready-made tools     | Fun, attention, disruption                       | Medium           |
+| Insider Threat                   | Employee or contractor inside organization    | Data theft, sabotage (intentional or accidental) | Very High        |
+| APT (Advanced Persistent Threat) | Organized, often state-sponsored attackers    | Espionage, long-term infiltration                | Critical         |
+
+#### Attack Lifecycle (Stages)
+
+| Stage                 | What Happens                                             |
+| --------------------- | -------------------------------------------------------- |
+| Reconnaissance        | Collect target information (emails, IPs, systems)        |
+| Scanning              | Identify open ports, services, vulnerabilities           |
+| Gaining Access        | Exploit vulnerabilities or use phishing/password attacks |
+| Maintaining Access    | Install backdoors or malware for persistence             |
+| Privilege Escalation  | Gain admin/root-level access                             |
+| Actions on Objectives | Steal data, disrupt systems, or spy                      |
+| Covering Tracks       | Delete logs, hide activity, avoid detection              |
+
+#### Attack Methods
+
+| Method             | Description                    | Example                              |
+| ------------------ | ------------------------------ | ------------------------------------ |
+| Social Engineering | Manipulating humans            | Phishing email pretending to be bank |
+| Malware            | Malicious software             | Ransomware encrypting files          |
+| Exploits           | Using software vulnerabilities | Buffer overflow attack               |
+| Password Attacks   | Cracking credentials           | Brute force, credential stuffing     |
+| DoS/DDoS           | Overloading systems            | Website crash via traffic flood      |
+| MITM Attack        | Intercepting communication     | Capturing login credentials on Wi-Fi |
+
+#### Attackers’ Goals
+
+| Method             | Description                    | Example                              |
+| ------------------ | ------------------------------ | ------------------------------------ |
+| Social Engineering | Manipulating humans            | Phishing email pretending to be bank |
+| Malware            | Malicious software             | Ransomware encrypting files          |
+| Exploits           | Using software vulnerabilities | Buffer overflow attack               |
+| Password Attacks   | Cracking credentials           | Brute force, credential stuffing     |
+| DoS/DDoS           | Overloading systems            | Website crash via traffic flood      |
+| MITM Attack        | Intercepting communication     | Capturing login credentials on Wi-Fi |
+
+#### Common Techniques Used by Attackers
+
+| Technique         | Purpose                             |
+| ----------------- | ----------------------------------- |
+| Phishing          | Steal credentials via fake messages |
+| Spear Phishing    | Target specific individuals         |
+| Keylogging        | Capture keystrokes                  |
+| Backdoors         | Maintain long-term access           |
+| Botnets           | Control infected devices            |
+| Zero-day Exploits | Use unknown vulnerabilities         |
+
+#### Modern Attacker Trends
+
+| Trend                   | Description                             |
+| ----------------------- | --------------------------------------- |
+| Automation              | Use of bots and AI for attacks          |
+| Cloud Targeting         | Attacking AWS, Azure, GCP environments  |
+| Hybrid Attacks          | Combining phishing + malware + exploits |
+| Human Focus             | Targeting employees more than systems   |
+| Ransomware-as-a-Service | Renting ransomware tools                |
+
+### The Levels of Defense in Depth
+
+#### Defense in Depth (Layered Security)
+
+| Layer                              | Description                        | Security Controls                     | Example                                |
+| ---------------------------------- | ---------------------------------- | ------------------------------------- | -------------------------------------- |
+| Physical Security                  | Protect physical access to systems | CCTV, guards, locks, biometric access | Data center access control             |
+| Perimeter Security                 | First line of network defense      | Firewalls, IDS/IPS, VPN               | Blocking unauthorized internet traffic |
+| Network Security                   | Internal network protection        | Network segmentation, VLANs, NAC      | Separate HR and Finance networks       |
+| Host Security                      | Protect servers and endpoints      | Antivirus, patching, hardening        | Secured Linux/Windows servers          |
+| Application Security               | Secure applications and APIs       | WAF, secure coding, input validation  | Prevent SQL injection                  |
+| Data Security                      | Protect sensitive data             | Encryption, DLP, access control       | Encrypt database or backups            |
+| Identity & Access Management (IAM) | Control user access                | MFA, RBAC, least privilege            | Admin vs user roles                    |
+| Monitoring & Logging               | Detect and respond to threats      | SIEM, log monitoring, alerts          | Detect suspicious login                |
+| Incident Response                  | Handle security incidents          | Playbooks, SOC, response team         | Respond to ransomware attack           |
+| Policies & Awareness               | Human and organizational controls  | Security policies, training           | Employee phishing awareness            |
+
+#### Defense Layers vs Attack Stages
+
+| Attack Stage         | Defense Layer That Stops It    |
+| -------------------- | ------------------------------ |
+| Reconnaissance       | Perimeter Security, Monitoring |
+| Scanning             | Firewall, IDS/IPS              |
+| Gaining Access       | IAM, Application Security      |
+| Maintaining Access   | Host Security, EDR             |
+| Privilege Escalation | IAM, System Hardening          |
+| Data Exfiltration    | Data Security, DLP             |
+| Covering Tracks      | Logging, SIEM                  |
+
+#### Types of Controls in Each Layer
+
+| Control Type | Description                     | Example                               |
+| ------------ | ------------------------------- | ------------------------------------- |
+| Preventive   | Stop attacks before they happen | Firewall, MFA                         |
+| Detective    | Identify attacks in progress    | SIEM alerts, IDS                      |
+| Corrective   | Fix issues after attack         | Patch systems, restore backups        |
+| Deterrent    | Discourage attackers            | Warning banners, policies             |
+| Compensating | Alternative controls            | Extra monitoring if patch unavailable |
+
+#### Real-World
+
+| Layer       | Example Implementation              |
+| ----------- | ----------------------------------- |
+| Perimeter   | AWS Security Group + Firewall       |
+| Network     | VPC with private/public subnets     |
+| Host        | Hardened EC2 (disable root login)   |
+| Application | WAF + secure API validation         |
+| IAM         | IAM roles + MFA                     |
+| Data        | S3 encryption + database encryption |
+| Monitoring  | CloudWatch + SIEM                   |
+| Response    | Incident response playbook          |
+
+### Risk
+
+Risk is the potential for loss or damage when a threat exploits a vulnerability.
+
+`Risk` = `Threat` `×` `Vulnerability` `×` `Impact`
+
+#### Key Components of Risk
+
+| Component     | Description                    | Example                             |
+| ------------- | ------------------------------ | ----------------------------------- |
+| Asset         | What you want to protect       | Database, server, application       |
+| Threat        | Anything that can cause harm   | Hacker, malware, insider            |
+| Vulnerability | Weakness that can be exploited | Weak password, unpatched system     |
+| Impact        | Damage if attack happens       | Data loss, financial loss, downtime |
+
+#### Types of Risk
+
+| Risk Type         | Description                      | Example                  |
+| ----------------- | -------------------------------- | ------------------------ |
+| Technical Risk    | System or software weakness      | Unpatched Linux server   |
+| Human Risk        | User mistakes or insider threats | Clicking phishing email  |
+| Operational Risk  | Process failure                  | No backup strategy       |
+| Compliance Risk   | Violation of laws/regulations    | Not following GDPR/HIPAA |
+| Financial Risk    | Monetary loss                    | Ransomware payment       |
+| Reputational Risk | Brand damage                     | Data breach exposure     |
+
+#### Risk Management Process
+
+| Step     | Description                           |
+| -------- | ------------------------------------- |
+| Identify | Find assets, threats, vulnerabilities |
+| Assess   | Evaluate likelihood and impact        |
+| Treat    | Reduce or control risk                |
+| Monitor  | Continuously track risk               |
+
+#### Risk Treatment Strategies
+
+| Strategy | Description                 | Example                      |
+| -------- | --------------------------- | ---------------------------- |
+| Avoid    | Eliminate the risk          | Stop using vulnerable system |
+| Mitigate | Reduce the risk             | Apply patch, enable MFA      |
+| Transfer | Shift risk to another party | Insurance, outsourcing       |
+| Accept   | Accept the risk             | Low-impact system            |
+
+#### Risk Matrix
+
+| Likelihood ↓ / Impact → | 1 (Low) | 2      | 3      | 4        | 5 (Critical) |
+| ----------------------- | ------- | ------ | ------ | -------- | ------------ |
+| **5 - Almost Certain**  | Medium  | High   | High   | Critical | Critical     |
+| **4 - Likely**          | Medium  | Medium | High   | High     | Critical     |
+| **3 - Possible**        | Low     | Medium | Medium | High     | High         |
+| **2 - Unlikely**        | Low     | Low    | Medium | Medium   | High         |
+| **1 - Rare**            | Low     | Low    | Low    | Medium   | Medium       |
+
+#### Practical Use in Cybersecurity
+
+| Area              | Usage                     |
+| ----------------- | ------------------------- |
+| SOC               | Prioritize alerts         |
+| DevOps            | Secure deployments        |
+| Cloud (AWS/Azure) | Risk-based architecture   |
+| Compliance        | ISO 27001 risk assessment |
+| Management        | Decision making           |
+
+### Threat Modeling
+
+Threat modeling is the process of, `Identifying threats`, `Finding vulnerabilities`, `Improving system security design`.
+
+#### Threat Modeling Process
+
+| Step                         | Description                    | Key Output                                     |
+| ---------------------------- | ------------------------------ | ---------------------------------------------- |
+| Identify Security Objectives | Define what must be protected  | CIA (Confidentiality, Integrity, Availability) |
+| Application Overview         | Understand system architecture | High-level design diagram                      |
+| Decompose Application        | Break system into components   | Data flow diagrams (DFD)                       |
+| Identify Threats             | Find possible attacks          | Threat list                                    |
+| Identify Vulnerabilities     | Find weaknesses                | Vulnerability list                             |
+| Improve Design               | Apply security controls        | Secure architecture                            |
+
+#### Identify Threats (STRIDE Model)
+
+| Threat Type            | Description                   | Example                 |
+| ---------------------- | ----------------------------- | ----------------------- |
+| Spoofing               | Pretending to be someone else | Fake login identity     |
+| Tampering              | Changing data                 | Modify database records |
+| Repudiation            | Denying actions               | User denies transaction |
+| Information Disclosure | Data leakage                  | Exposed API data        |
+| Denial of Service      | System unavailability         | Traffic flood           |
+| Elevation of Privilege | Gaining higher access         | User → Admin            |
+
+#### Identify Vulnerabilities
+
+| Category                | Example                      |
+| ----------------------- | ---------------------------- |
+| Authentication Weakness | Weak passwords, no MFA       |
+| Authorization Issues    | Improper role control        |
+| Input Validation        | SQL Injection, XSS           |
+| Configuration Issues    | Open ports, default settings |
+| Patch Management        | Outdated software            |
+| Logging Gaps            | No monitoring or alerts      |
+
+### Incident Management
+
+Incident management is a structured process to detect, analyze, prioritize, and resolve security incidents to minimize impact and improve system resilience.
+
+#### Think Outside the Box (Security Mindset)
+
+In cybersecurity, this means, Thinking like an attacker, Not relying only on standard patterns, Finding hidden or unexpected risks.
+
+#### Creative Security Thinking Process
+
+| Step       | Description                      | Key Question               |
+| ---------- | -------------------------------- | -------------------------- |
+| Identify   | Find unusual risks or behaviors  | “What could go wrong?”     |
+| Analyze    | Understand impact and root cause | “How can it be exploited?” |
+| Prioritize | Rank based on risk level         | “What is most critical?”   |
+| Resolve    | Fix and improve controls         | “How do we prevent it?”    |
+
+#### Incident Management Lifecycle
+
+| Phase                    | Description               | Example                    |
+| ------------------------ | ------------------------- | -------------------------- |
+| Identify                 | Detect incident           | SIEM alert, unusual login  |
+| Analyze                  | Investigate and confirm   | Check logs, trace attacker |
+| Prioritize               | Assess severity           | Critical vs low incident   |
+| Resolve                  | Contain and fix issue     | Block IP, patch system     |
+| Recover                  | Restore normal operations | Bring system back online   |
+| Review (Lessons Learned) | Improve future response   | Update playbooks           |
+
+#### Benefits of Incident Management
+
+| Benefit                    | Description                        |
+| -------------------------- | ---------------------------------- |
+| Proactive Security         | Detect threats early before damage |
+| Better Service Quality     | Systems remain stable and reliable |
+| Reduced Impact             | Minimize damage and downtime       |
+| Efficiency                 | Faster detection and response      |
+| Productivity               | Less disruption for teams          |
+| Availability               | Systems stay online (uptime)       |
+| Customer/User Satisfaction | Trust and reliability increase     |
+
+### Incident Handling & Response (IH&R)
+
+IH&R is a structured process to detect, manage, and recover from security incidents while minimizing damage and improving future defense.
+
+**IH&R Process (Step-by-Step)**
+
+| Step  | Phase                           | Description                                              | Example                                    |
+| :---: | ------------------------------- | -------------------------------------------------------- | ------------------------------------------ |
+|   1   | Preparation                     | Get ready before incidents occur (tools, team, policies) | SIEM setup, IR playbooks, trained SOC team |
+|   2   | Incident Recording & Assignment | Log the incident and assign to responsible team          | Ticket created in Jira/ServiceNow          |
+|   3   | Triage                          | Validate and classify incident severity                  | False positive vs real attack              |
+|   4   | Notification                    | Inform stakeholders and response team                    | Alert SOC, management                      |
+|   5   | Containment                     | Limit spread and damage                                  | Isolate infected server                    |
+|   6   | Forensic Examination            | Investigate root cause and evidence                      | Analyze logs, malware, memory              |
+|   7   | Eradication                     | Remove threat from environment                           | Delete malware, patch vulnerability        |
+|   8   | Recovery                        | Restore systems to normal operation                      | Bring services back online                 |
+|   9   | Post-Incident Actions           | Learn and improve security                               | Update policies, lessons learned           |
+
+#### Phase Mapping
+
+| Category        | Steps Included                               |
+| --------------- | -------------------------------------------- |
+| Before Incident | Preparation                                  |
+| During Incident | Recording, Triage, Notification, Containment |
+| Investigation   | Forensics, Eradication                       |
+| After Incident  | Recovery, Post-incident review               |
+
+### AI and ML use in Cybersecurity
+
+AI and ML enhance cybersecurity by detecting anomalies, automating responses, and identifying unknown threats, but they cannot completely stop attacks and must be combined with human expertise and layered security.
+
+#### Role of AI & ML in Cybersecurity
+
+| Area              | How AI/ML Helps                         | Example                        |
+| ----------------- | --------------------------------------- | ------------------------------ |
+| Threat Detection  | Identifies unusual behavior (anomalies) | Detect abnormal login patterns |
+| Malware Detection | Recognizes new/unknown malware          | Zero-day malware detection     |
+| Automation        | Responds faster than humans             | Auto-block malicious IP        |
+| Prediction        | Anticipates future attacks              | Risk scoring systems           |
+
+#### AI-Based Antivirus
+
+| Feature              | Description                                      |
+| -------------------- | ------------------------------------------------ |
+| Behavior Analysis    | Detects suspicious actions instead of signatures |
+| Zero-Day Detection   | Finds unknown threats                            |
+| Real-Time Protection | Continuous monitoring                            |
+| Self-Learning        | Improves over time                               |
+
+#### AI vs Botnets
+
+| Aspect    | Traditional Botnet | AI-Enhanced Defense               |
+| --------- | ------------------ | --------------------------------- |
+| Behavior  | Repetitive traffic | Detects abnormal traffic patterns |
+| Detection | Signature-based    | Behavior-based detection          |
+| Response  | Manual             | Automated blocking                |
+
+### Payment Card Industry Data Security Standard (PCI DSS)
+
+| Category                                        | Requirement                        | Description                              |
+| ----------------------------------------------- | ---------------------------------- | ---------------------------------------- |
+| Build & Maintain Secure Network                 | Firewalls, secure configs          | Protect network from unauthorized access |
+| Protect Cardholder Data                         | Encryption, masking                | Secure stored and transmitted card data  |
+| Maintain Vulnerability Management Program (VMP) | Anti-virus, patching               | Regularly update and fix vulnerabilities |
+| Strong Access Control                           | RBAC, MFA                          | Limit access to card data                |
+| Monitor & Test Networks                         | Logging, SIEM, penetration testing | Detect and respond to threats            |
+| Information Security Policy                     | Policies & training                | Define security rules for organization   |
+
+### ISO/IEC 27001:2013
+
+Global standard for Information Security Management System (ISMS)
+
+| Phase     | Description                    |
+| --------- | ------------------------------ |
+| Establish | Define ISMS policies and scope |
+| Implement | Apply security controls        |
+| Maintain  | Operate and monitor controls   |
+| Improve   | Continuously enhance security  |
+
+### Health Insurance Portability and Accountability Act (HIPAA)
+
+Protect healthcare data (PHI – Protected Health Information)
+
+| Rule                             | Description                                    |
+| -------------------------------- | ---------------------------------------------- |
+| Privacy Rule                     | Protect patient data confidentiality           |
+| Security Rule                    | Safeguard electronic health data (ePHI)        |
+| Transaction & Code Set Standards | Standardize electronic healthcare transactions |
+| National Identifier              | Unique IDs for providers/employers             |
+| Enforcement Rule                 | Penalties for non-compliance                   |
+
+### PCI DSS vs ISO 27001 vs HIPAA
+
+| Standard  | Focus                | Industry            | Key Goal                |
+| --------- | -------------------- | ------------------- | ----------------------- |
+| PCI DSS   | Payment security     | Banking, e-commerce | Protect cardholder data |
+| ISO 27001 | Information security | All industries      | Build ISMS              |
+| HIPAA     | Health data security | Healthcare          | Protect patient data    |
+
 ## With Regards, `Jakir`
 
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]
