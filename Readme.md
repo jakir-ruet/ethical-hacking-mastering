@@ -101,6 +101,10 @@ full Ethical Hacking Series with detailed subcategories for every main topic. I�
 | **Command & Control (C2)** | Connect to attacker server          | Remote control communication             | Malware connects to C2 server            | Network monitoring, DNS filtering     |
 | **Action on Objectives**   | Achieve attack goal                 | Data theft, ransomware, lateral movement | Exfiltration of database                 | DLP, SIEM, Zero Trust                 |
 
+> **Reconnaissance:** Is the preliminary survey, exploration, or inspection of an area to gather information about enemy forces, terrain, or resources.
+> **Weaponization**: Is the process of adapting a substance, object, or concept into a tool for causing harm, inflicting injury, or gaining a tactical advantage.
+> **Exploitation:** Is the unfair, manipulative use of a person or resource for personal advantage, often involving coercion, abuse of power, or taking advantage of vulnerability.
+
 ### Tactics, Techniques, and Procedures (TTPs)
 
 | Component      | Description                               | Focus Area                    | Example                                            | Detection / Defense                |
@@ -109,16 +113,57 @@ full Ethical Hacking Series with detailed subcategories for every main topic. I�
 | **Techniques** | Methods used to achieve the tactic        | *How* the attack is done      | Phishing, Exploiting vulnerabilities               | IDS/IPS, EDR, SIEM                 |
 | **Procedures** | Step-by-step implementation of techniques | *Exactly how* it is executed  | Sending crafted phishing email with malicious link | Threat hunting, behavior analysis  |
 
-### Adversary Behavioral Identification
+### Adversary (Oponent) Behavioral Identification
 
-| Behavior                           | Description                                             | Indicators (What to Look For)                 | Example                                | Detection / Mitigation                   |
-| ---------------------------------- | ------------------------------------------------------- | --------------------------------------------- | -------------------------------------- | ---------------------------------------- |
-| **Internal Reconnaissance**        | Attacker explores internal network after initial access | Unusual scanning, LDAP queries, port sweeps   | Compromised user scanning subnet       | Network monitoring, IDS/IPS, Zero Trust  |
-| **Suspicious Proxy Events**        | Abnormal traffic through proxy servers                  | Access to unusual domains, high data transfer | User accessing rare external domains   | Proxy logs analysis, URL filtering       |
-| **PowerShell Abuse**               | Misuse of PowerShell for malicious tasks                | Encoded commands, unusual scripts             | Base64 encoded PowerShell execution    | EDR, PowerShell logging, script blocking |
-| **HTTP User-Agent Anomalies**      | Fake or unusual user-agent strings                      | Non-standard or scripted agents               | “curl/7.68.0” or custom malware agent  | Web logs analysis, WAF                   |
-| **CLI Processes**                  | Suspicious command-line activity                        | Unknown commands, privilege escalation        | `net user`, `whoami`, `ipconfig` abuse | Endpoint monitoring, audit logs          |
-| **Command & Control (C2) Servers** | Communication with attacker infrastructure              | Repeated outbound connections, beaconing      | Regular traffic to unknown IP/domain   | DNS filtering, network monitoring        |
+Its the process of detecting and analyzing malicious actors by observing their patterns of behavior, actions, and techniques within a system or network, rather than relying solely on known signatures or indicators.
+
+| Behavior                              | Description                                                 | Indicators (What to Look For)                                       | Example                                     | Detection / Mitigation                                     | MITRE ATT&CK     |
+| ------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------------------------------- | ---------------- |
+| **Internal Reconnaissance**           | Attacker discovers internal assets after initial compromise | Network scans, LDAP queries, account & host enumeration             | Compromised user scanning subnet            | NDR, IDS/IPS, Zero Trust, AD monitoring                    | T1087, T1018     |
+| **Suspicious Proxy Events**           | Abnormal outbound traffic via proxy infrastructure          | Rare domains, unusual bandwidth, policy bypass attempts             | User accessing unknown or risky domains     | Proxy log analysis, URL filtering, CASB                    | T1071            |
+| **PowerShell Abuse**                  | Malicious use of PowerShell for execution or persistence    | Encoded commands, remote script execution, obfuscation              | Base64-encoded PowerShell payload           | EDR, PowerShell logging, AMSI, script control              | T1059.001        |
+| **HTTP User-Agent Anomalies**         | Use of fake or non-standard client identifiers              | Uncommon agents, mismatched browser behavior                        | `curl/7.68.0`, scripted malware agent       | WAF, web log analysis, anomaly detection                   | T1071.001        |
+| **CLI Processes**                     | Suspicious command-line activity using native tools         | Abnormal admin commands, privilege escalation attempts              | `whoami`, `net user`, `ipconfig` misuse     | Endpoint monitoring, audit logs, EDR                       | T1059            |
+| **Command & Control (C2)**            | Communication with attacker-controlled infrastructure       | Beaconing patterns, repeated outbound traffic, unknown destinations | Periodic connection to suspicious IP/domain | DNS filtering, NDR, firewall rules, threat intel           | T1071, T1095     |
+| **Data Exfiltration (DNS Tunneling)** | Stealthy data transfer using trusted protocols like DNS     | High DNS query volume, long/random subdomains, encoded payloads     | `data.exfil.attacker.com`                   | DNS monitoring, DLP, anomaly detection, DNS security tools | T1048, T1071.004 |
+
+### Indicators of Compromise (IoC)
+
+Indicators of Compromise (IoCs) are observable signs or evidence that a system or network may have been breached or is under attack. Some common IoCs mention below table
+
+| Category             | IoC                             | What It Means                            |
+| -------------------- | ------------------------------- | ---------------------------------------- |
+| **Files & Software** | Unauthorized software/files     | Malware, backdoors, unknown binaries     |
+| **Email**            | Suspicious emails               | Phishing, malicious attachments/links    |
+| **System Changes**   | Registry & file system changes  | Persistence mechanisms, malware activity |
+| **Network**          | Unknown ports/protocols         | Backdoors, covert communication          |
+| **Bandwidth**        | Excessive usage                 | Possible data exfiltration               |
+| **Hardware**         | Rogue devices                   | Unauthorized USB, network devices        |
+| **Availability**     | Service disruption / defacement | DoS or web compromise                    |
+| **Identity**         | Unauthorized account usage      | Account takeover, privilege abuse        |
+
+### `IoCs` vs `Behavioral` Detection
+
+| Aspect              | **IoCs (Indicators of Compromise)**                        | **Behavioral Detection (Adversary Behavior)**       |
+| ------------------- | ---------------------------------------------------------- | --------------------------------------------------- |
+| **Definition**      | Observable evidence that a system **has been compromised** | Detection based on **patterns of attacker actions** |
+| **Focus**           | **What happened (evidence)**                               | **How it happened (behavior/pattern)**              |
+| **Nature**          | Static (IP, hash, file, domain)                            | Dynamic (activities, sequences, patterns)           |
+| **Detection Type**  | Signature-based                                            | Behavior / anomaly-based                            |
+| **Effectiveness**   | Good for **known threats**                                 | Effective for **unknown / zero-day attacks**        |
+| **Evasion Risk**    | Easy to evade (change IP, hash)                            | Harder to evade (behavior is consistent)            |
+| **Examples**        | Malicious IP, file hash, suspicious domain                 | Reconnaissance, lateral movement, C2 communication  |
+| **Tools Used**      | Antivirus, IOC feeds, threat intel                         | EDR, SIEM, UEBA                                     |
+| **Response Speed**  | Fast for known attacks                                     | May require correlation and analysis                |
+| **False Positives** | Lower (specific indicators)                                | Higher (needs tuning)                               |
+
+#### EDR vs SIEM vs UEBA
+
+| Tool     | Full Form                                 | Purpose                                                          | Focus                       | Data Source                                 | Strength                                 |
+| -------- | ----------------------------------------- | ---------------------------------------------------------------- | --------------------------- | ------------------------------------------- | ---------------------------------------- |
+| **EDR**  | Endpoint Detection & Response             | Detect and respond to threats on endpoints (laptops, servers)    | Endpoint activity           | Process, file, registry, memory logs        | Deep visibility on host attacks          |
+| **SIEM** | Security Information and Event Management | Collect, correlate, and analyze logs from all systems            | Centralized log correlation | Network, server, apps, firewall, cloud logs | Enterprise-wide visibility               |
+| **UEBA** | User and Entity Behavior Analytics        | Detect abnormal behavior of users and systems using analytics/AI | Behavioral anomalies        | User login patterns, access behavior        | Detect insider threats & unknown attacks |
 
 ### Diamond Model of Intrusion Analysis
 
@@ -131,7 +176,51 @@ The Diamond Model was developed by Center for Cyber Intelligence Analysis and Th
 | **Infrastructure** | Systems used to launch attack   | Where does the attack come from? | C2 servers, domains, IPs |
 | **Victim**         | Target of the attack            | Who is being attacked?           | Organization, user       |
 
-### Types of Hackers
+### Hacking Concepts
+
+`Hacking is exploiting security controls either in a technical, physical or a human-based element` by `Kevin Mitnick`
+
+#### Three areas of exploitation
+
+##### 1. Technical exploitation
+
+Attacking software, hardware, or network vulnerabilities, like
+
+- `Buffer overflows`– injecting malicious code into memory.
+- `SQL injection` – manipulating database queries.
+- `Exploiting` unpatched vulnerabilities (e.g., EternalBlue).
+
+> **Why it works:** Software is complex, and bugs are inevitable.
+
+##### 2 Physical exploitation
+
+Bypassing physical barriers to access systems or data, like:
+
+- `Tailgating` – following an authorized person through a secure door.
+- `Dumpster diving` – retrieving discarded documents or devices.
+- `Lock picking` or bypassing badge readers.
+
+> **Why it works:** Physical security is often overlooked or poorly enforced.
+
+##### 3. Human-based exploitation (Social Engineering)
+
+Manipulating people into revealing information or performing actions, like
+
+- `Phishing` – fake emails tricking users into clicking malicious links.
+- `Pretexting` – inventing a scenario to extract data (e.g., calling IT support for a password reset).
+- `Baiting` – leaving an infected USB drive in a parking lot.
+
+> **Why it works:** Humans are often the weakest link due to trust, helpfulness, or lack of awareness.
+
+**Summary**
+
+| Layer     | Controls Needed                                 |
+| --------- | ----------------------------------------------- |
+| Technical | Firewalls, IAM, encryption, patching            |
+| Physical  | CCTV, access control, biometric locks           |
+| Human     | Security awareness, phishing training, policies |
+
+#### Types of Hackers
 
 | Type                  | Description                                         | Motivation                          | Skill Level                    | Example                                                   |
 | --------------------- | --------------------------------------------------- | ----------------------------------- | ------------------------------ | --------------------------------------------------------- |
@@ -140,6 +229,17 @@ The Diamond Model was developed by Center for Cyber Intelligence Analysis and Th
 | **Gray Hat Hackers**  | Operate between legal and illegal boundaries        | Curiosity, reputation               | Medium to high                 | Access system without permission but report vulnerability |
 | **Suicide Hackers**   | Attack without concern for consequences             | Ideology, revenge                   | Varies                         | Hackers exposing systems publicly without hiding identity |
 | **Script Kiddies**    | Use pre-made tools without deep knowledge           | Fun, curiosity                      | Low                            | Running downloaded hacking tools                          |
+
+#### Types of Cyber Threat Actors
+
+| Threat Actor Type                          | Description                                                               | Motivation                                | Characteristics                                     | Example                      |
+| ------------------------------------------ | ------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------- | ---------------------------- |
+| **Spy / Cyber Spy**                        | Individuals or groups conducting espionage to steal sensitive information | Intelligence gathering, corporate secrets | Stealthy, long-term access, avoids detection        | Corporate espionage attacker |
+| **Cyber Criminals / Organized Crime**      | Groups focused on financial gain through cyber attacks                    | Money (ransomware, fraud, data theft)     | Highly structured, uses malware-as-a-service        | Ransomware gangs             |
+| **State-Sponsored Actors**                 | Advanced groups backed by governments                                     | Political, military, strategic advantage  | Highly skilled, well-funded, persistent (APT-level) | Nation-state APT groups      |
+| **Hacktivists (Political/Religious)**      | Attackers driven by ideology                                              | Political or religious beliefs            | Defacement, DDoS, data leaks                        | Ideology-driven groups       |
+| **Terrorist / Extremist Actors**           | Use cyber attacks to spread fear or disrupt systems                       | Fear, disruption, propaganda              | Targets critical infrastructure                     | Cyber-terror campaigns       |
+| **Insider Threats** *(important addition)* | Employees or trusted users misusing access                                | Financial gain, revenge, coercion         | Hard to detect, already inside perimeter            | Disgruntled employee         |
 
 ## With Regards, `Jakir`
 
