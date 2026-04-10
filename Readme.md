@@ -234,7 +234,7 @@ Manipulating people into revealing information or performing actions, like
 
 | Threat Actor Type                          | Description                                                               | Motivation                                | Characteristics                                     | Example                      |
 | ------------------------------------------ | ------------------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------- | ---------------------------- |
-| **Spy / Cyber Spy**                        | Individuals or groups conducting espionage to steal sensitive information | Intelligence gathering, corporate secrets | Stealthy, long-term access, avoids detection        | Corporate espionage attacker |
+| **Spy/Cyber Spy**                          | Individuals or groups conducting espionage to steal sensitive information | Intelligence gathering, corporate secrets | Stealthy, long-term access, avoids detection        | Corporate espionage attacker |
 | **Cyber Criminals / Organized Crime**      | Groups focused on financial gain through cyber attacks                    | Money (ransomware, fraud, data theft)     | Highly structured, uses malware-as-a-service        | Ransomware gangs             |
 | **State-Sponsored Actors**                 | Advanced groups backed by governments                                     | Political, military, strategic advantage  | Highly skilled, well-funded, persistent (APT-level) | Nation-state APT groups      |
 | **Hacktivists (Political/Religious)**      | Attackers driven by ideology                                              | Political or religious beliefs            | Defacement, DDoS, data leaks                        | Ideology-driven groups       |
@@ -283,15 +283,38 @@ Reconnaissance is the first phase of a cyber attack where attackers gather infor
 
 ##### Types of Reconnaissance
 
-| Category           | Passive Reconnaissance                                                                                          | Active Reconnaissance                                                          |
-| ------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Meaning            | Gathering information without directly interacting with the target system                                       | Direct interaction with target systems to collect technical data               |
-| Sources/Activities | Company website, job postings, social media (LinkedIn, Facebook), DNS records, public documents, Google dorking | Port scanning (Nmap), service enumeration, vulnerability scanning, ping sweeps |
-| Goal               | Understand the target silently without detection                                                                | Identify live hosts, open ports, services, and vulnerabilities                 |
-| Interaction        | No direct contact with the target                                                                               | Direct contact with the target network                                         |
-| Detectability      | Hard to detect                                                                                                  | Easier to detect                                                               |
-| Risk Level         | Low risk                                                                                                        | Higher risk                                                                    |
-| Data Source Type   | External/public sources                                                                                         | Internal/target network probing                                                |
+| Category | Type         | Risk   | Detection     | How Detection Works                                                             |
+| -------- | ------------ | ------ | ------------- | ------------------------------------------------------------------------------- |
+| Method   | Passive      | Low    | Hard          | No direct system logs; only OSINT monitoring or external threat intel           |
+| Method   | Active       | High   | Easy          | Detected via SIEM/IDS/Firewall (port scans, unusual traffic, repeated requests) |
+| Identity | Anonymous    | High   | Hard          | Tracked via IP reputation, VPN/Tor detection, behavior patterns                 |
+| Identity | Pseudonymous | Medium | Medium        | Detected through behavioral correlation, device/browser fingerprinting          |
+| Target   | Organization | High   | Easy–Medium   | Internal logs, EDR alerts, SIEM correlation, user activity anomalies            |
+| Target   | Internet     | Medium | Easy at scale | Honeypots, threat intel feeds, global scan detection                            |
+
+##### Real-World
+
+| Step                              | Type of Recon |
+| --------------------------------- | ------------- |
+| Search company on Google/LinkedIn | Passive       |
+| Scan open ports of server         | Active        |
+| Use VPN to hide IP                | Anonymous     |
+| Use fake email to collect info    | Pseudonymous  |
+| Target internal employees         | Organization  |
+| Collect website DNS info          | Internet      |
+
+##### Goal of Reconnaissance
+
+| Goal                      | Description                                                                 |
+| ------------------------- | --------------------------------------------------------------------------- |
+| Identify Target           | Understand the organization, system, or person being targeted               |
+| Collect Information       | Gather IPs, domains, emails, employees, technologies used                   |
+| Find Attack Surface       | Discover exposed services, ports, applications, entry points                |
+| Identify Vulnerabilities  | Detect weak points (unpatched systems, misconfigurations, weak credentials) |
+| Map Network / System      | Understand architecture and infrastructure layout                           |
+| Gather Credentials Clues  | Find usernames, emails, patterns for phishing or password attacks           |
+| Reduce Risk for Attacker  | Plan attack strategy with minimal detection and maximum success             |
+| Enable Next Attack Phases | Prepare for scanning, exploitation, and access                              |
 
 ##### Social Engineering
 
