@@ -326,6 +326,47 @@ Social Engineering is manipulating people to gain confidential information inste
 - Pretexting (fake identity)
 - Baiting (malicious USB)
 
+##### ARIN
+
+It's a Regional Internet Registry (RIR) responsible for managing and distributing internet number resources such as:
+
+- IP addresses (IPv4 and IPv6)
+- Autonomous System Numbers (ASNs)
+
+**Why it matters in cybersecurity**
+
+ARIN plays an important role in internet infrastructure and security:
+
+- **IP ownership tracking:** Security analysts use ARIN’s database (WHOIS/RDAP) to identify who owns an IP address involved in attacks or suspicious activity.
+- **Incident investigation:** Helps trace the origin of malicious traffic.
+- **Network accountability:** Organizations registered with ARIN are easier to contact in case of abuse reports.
+- **Routing security:** Works alongside global efforts to improve trust in internet routing (like RPKI).
+
+**Where ARIN operates** ARIN covers:
+
+- United States
+- Canada
+- Parts of the Caribbean and North Atlantic
+
+**Is ARIN in Bangladesh?**
+
+`No` — American Registry for Internet Numbers (ARIN) does not operate in Bangladesh.
+
+**Who manages IP addresses in Bangladesh?**
+
+? Bangladesh is under: 👉 **APNIC**
+
+**APNIC is the Regional Internet Registry (RIR) for:**
+
+- Bangladesh 🇧🇩
+- India
+- Pakistan
+- China
+- Australia
+- Most of Asia-Pacific
+
+**Local authority in Bangladesh** 👉 Bangladesh Telecommunication Regulatory Commission (BTRC), They regulate ISPs and telecoms, but IP allocation comes from APNIC.
+
 #### 2. Scanning
 
 Scanning is the phase where attackers actively gather detailed technical information about target systems to identify live hosts, open ports, services, and vulnerabilities.

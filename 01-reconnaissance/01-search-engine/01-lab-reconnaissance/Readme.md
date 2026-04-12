@@ -46,7 +46,7 @@ netplan –debug  apply
 ifconfig
 ```
 
-### For Kalilinx
+### For Kali Linux
 
 ```bash
 sudo vi /etc/network/interfaces
